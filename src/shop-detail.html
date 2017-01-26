@@ -65,16 +65,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-weight: 500;
         line-height: 28px;
         margin: 0;
+        text-transform: capitalize;
+        margin-bottom: 12px;
       }
 
       .price {
-        margin: 16px 0 40px;
+        margin: 8px 0 0px;
         font-size: 16px;
         color: var(--app-secondary-color);
       }
 
       .description {
         margin: 32px 0;
+        display: none;
       }
 
       .description > h2 {
@@ -88,8 +91,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .pickers {
+        margin-top: 30px;
         @apply(--layout-vertical);
-        border-top: 1px solid #ccc;
+        /*border-top: 1px solid #ccc;*/
       }
 
       shop-select > select {
@@ -124,9 +128,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         .price {
           font-size: inherit;
-          margin: 12px 0 32px;
+          margin: 8px 10px 0 0;
+          display: inline-block;
         }
 
+        .price.non-veg {
+          border-left: 1px solid #757575;
+          padding-left: 10px;
+        }
       }
 
     </style>
@@ -153,16 +162,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <shop-image alt="[[item.title]]" src="[[item.largeImage]]"></shop-image>
       <div class="detail" has-content$="[[_isDefined(item)]]">
         <h1>[[item.title]]</h1>
-        <div class="price">[[_formatPrice(item.price)]]</div>
+        <div class="price">
+          <span hidden$="[[!item.specialPrice]]">Veg. </span>
+          <span>[[_formatPrice(item.price)]]</span>
+        </div>
+        <div class="price non-veg" hidden$="[[!item.specialPrice]]">
+          <span>Non-Veg. </span>
+          <span>[[_formatPrice(item.specialPrice)]]</span>
+        </div>
         <div class="pickers">
-          <shop-select>
-            <label id="sizeLabel" prefix>Size</label>
+          <shop-select hidden$="[[!item.specialPrice]]">
+            <label id="sizeLabel" prefix>Type</label>
             <select id="sizeSelect" aria-labelledby="sizeLabel">
-              <option value="XS">XS</option>
-              <option value="S">S</option>
-              <option value="M" selected>M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
+              <option value="V" selected>Veg.</option>
+              <option value="NV">Non-Veg.</option>
             </select>
             <shop-md-decorator aria-hidden="true">
               <shop-underline></shop-underline>
@@ -242,7 +255,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             // Reset the select menus.
             this.$.quantitySelect.value = '1';
-            this.$.sizeSelect.value = 'M';
+            this.$.sizeSelect.value = 'V';
 
             this.fire('change-section', {
               category: item.category,
@@ -259,7 +272,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _formatPrice: function(price) {
-        return price ? '$' + price.toFixed(2) : '';
+        return price ? '₹ ' + price.toFixed(2) : '';
       },
 
       _addToCart: function() {

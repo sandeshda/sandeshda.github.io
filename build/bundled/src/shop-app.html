@@ -511,7 +511,7 @@ n&&e.updateNativeStyleProperties(document.documentElement,this.customStyle)}};re
 </dom-module>
 <script>!function(){"use strict";Polymer({is:"app-route",properties:{route:{type:Object,notify:!0},pattern:{type:String},data:{type:Object,value:function(){return{}},notify:!0},queryParams:{type:Object,value:function(){return{}},notify:!0},tail:{type:Object,value:function(){return{path:null,prefix:null,__queryParams:null}},notify:!0},active:{type:Boolean,notify:!0,readOnly:!0},_queryParamsUpdating:{type:Boolean,value:!1},_matched:{type:String,value:""}},observers:["__tryToMatch(route.path, pattern)","__updatePathOnDataChange(data.*)","__tailPathChanged(tail.path)","__routeQueryParamsChanged(route.__queryParams)","__tailQueryParamsChanged(tail.__queryParams)","__queryParamsChanged(queryParams.*)"],created:function(){this.linkPaths("route.__queryParams","tail.__queryParams"),this.linkPaths("tail.__queryParams","route.__queryParams")},__routeQueryParamsChanged:function(t){if(t&&this.tail){if(this.set("tail.__queryParams",t),!this.active||this._queryParamsUpdating)return;var a={},i=!1;for(var e in t)a[e]=t[e],!i&&this.queryParams&&t[e]===this.queryParams[e]||(i=!0);for(var e in this.queryParams)if(i||!(e in t)){i=!0;break}if(!i)return;this._queryParamsUpdating=!0,this.set("queryParams",a),this._queryParamsUpdating=!1}},__tailQueryParamsChanged:function(t){t&&this.route&&this.set("route.__queryParams",t)},__queryParamsChanged:function(t){this.active&&!this._queryParamsUpdating&&this.set("route.__"+t.path,t.value)},__resetProperties:function(){this._setActive(!1),this._matched=null},__tryToMatch:function(){if(this.route){var t=this.route.path,a=this.pattern;if(a){if(!t)return void this.__resetProperties();for(var i=t.split("/"),e=a.split("/"),r=[],s={},h=0;h<e.length;h++){var n=e[h];if(!n&&""!==n)break;var u=i.shift();if(!u&&""!==u)return void this.__resetProperties();if(r.push(u),":"==n.charAt(0))s[n.slice(1)]=u;else if(n!==u)return void this.__resetProperties()}this._matched=r.join("/");var _={};this.active||(_.active=!0);var o=this.route.prefix+this._matched,l=i.join("/");i.length>0&&(l="/"+l),this.tail&&this.tail.prefix===o&&this.tail.path===l||(_.tail={prefix:o,path:l,__queryParams:this.route.__queryParams}),_.data=s,this._dataInUrl={};for(var p in s)this._dataInUrl[p]=s[p];this.__setMulti(_)}}},__tailPathChanged:function(t){if(this.active){var a=t,i=this._matched;a&&("/"!==a.charAt(0)&&(a="/"+a),i+=a),this.set("route.path",i)}},__updatePathOnDataChange:function(){if(this.route&&this.active){var t=this.__getLink({}),a=this.__getLink(this._dataInUrl);t!==a&&this.set("route.path",t)}},__getLink:function(t){var a={tail:null};for(var i in this.data)a[i]=this.data[i];for(var i in t)a[i]=t[i];var e=this.pattern.split("/"),r=e.map(function(t){return":"==t[0]&&(t=a[t.slice(1)]),t},this);return a.tail&&a.tail.path&&(r.length>0&&"/"===a.tail.path.charAt(0)?r.push(a.tail.path.slice(1)):r.push(a.tail.path)),r.join("/")},__setMulti:function(t){for(var a in t)this._propertySetter(a,t[a]);void 0!==t.data&&(this._pathEffector("data",this.data),this._notifyChange("data")),void 0!==t.active&&(this._pathEffector("active",this.active),this._notifyChange("active")),void 0!==t.tail&&(this._pathEffector("tail",this.tail),this._notifyChange("tail"))}})}();</script><dom-module id="shop-category-data" assetpath="./">
 
-  <script>!function(){var A=[{name:"mens_outerwear",title:"Men's Outerwear",image:"/images/mens_outerwear.jpg",placeholder:"data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAXAABAQEAAAAAAAAAAAAAAAAAAAIEAQEAAAAAAAAAAAAAAAAAAAACEAAAAwYHAQAAAAAAAAAAAAAAERMBAhIyYhQhkaEDIwUVNREBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A3dkr5e8tfpwuneJITOzIcmQpit037Bw4mnCVNOpAAQv/2Q=="},{name:"ladies_outerwear",title:"Ladies Outerwear",image:"/images/ladies_outerwear.jpg",placeholder:"data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAWQABAQAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAIDEAABAwMFAQAAAAAAAAAAAAARAAEygRIDIlITMwUVEQEBAAAAAAAAAAAAAAAAAAAAQf/aAAwDAQACEQMRAD8Avqn5meQ0kwk1UyclmLtNj7L4PQoioFf/2Q=="},{name:"mens_tshirts",title:"Men's T-Shirts",image:"/images/mens_tshirts.jpg",placeholder:"data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAWwABAQEAAAAAAAAAAAAAAAAAAAMEAQEAAAAAAAAAAAAAAAAAAAAAEAABAwEJAAAAAAAAAAAAAAARAAESEyFhodEygjMUBREAAwAAAAAAAAAAAAAAAAAAAEFC/9oADAMBAAIRAxEAPwDb7kupZU1MTGnvOCgxpvzEXTyRElCmf//Z"},{name:"ladies_tshirts",title:"Ladies T-Shirts",image:"/images/ladies_tshirts.jpg",placeholder:"data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAXwABAQEAAAAAAAAAAAAAAAAAAAMFAQEBAAAAAAAAAAAAAAAAAAABAhAAAQIDCQAAAAAAAAAAAAAAEQABITETYZECEjJCAzMVEQACAwAAAAAAAAAAAAAAAAAAATFBgf/aAAwDAQACEQMRAD8AzeADAZiFc5J7BC9Scek3VrtooilSNaf/2Q=="}];Polymer({is:"shop-category-data",properties:{categoryName:String,itemName:String,categories:{type:Array,value:A,readOnly:!0,notify:!0},category:{type:Object,computed:"_computeCategory(categoryName)",notify:!0},item:{type:Object,computed:"_computeItem(category.items, itemName)",notify:!0},failure:{type:Boolean,notify:!0,readOnly:!0}},_getCategoryObject:function(A){for(var e,t=0;e=this.categories[t];++t)if(e.name===A)return e;this.fire("show-invalid-url-warning")},_computeCategory:function(A){var e=this._getCategoryObject(A);return this._fetchItems(e,1),e},_computeItem:function(A,e){for(var t,a=0;t=A[a];++a)if(t.name===e)return t;this.fire("show-invalid-url-warning")},_fetchItems:function(A,e){this._setFailure(!1),A&&!A.items&&this._getResource({url:"/data/"+A.name+".json",onLoad:function(A){this.set("category.items",JSON.parse(A.target.responseText))},onError:function(A){this._setFailure(!0)}},e)},_getResource:function(A,e){var t=new XMLHttpRequest;t.addEventListener("load",A.onLoad.bind(this)),t.addEventListener("error",function(t){e>1?this.debounce("_getResource",this._getResource.bind(this,A,e-1),200):A.onError.call(this,t)}.bind(this)),t.open("GET",A.url),t.send()},refresh:function(){this.categoryName&&this._fetchItems(this._getCategoryObject(this.categoryName),3)}})}();</script>
+  <script>!function(){var A=[{name:"Sweegans_Sips",title:"Sweegans Sips",icon:"maps:local-cafe",image:"/images/mens_outerwear.jpg",placeholder:"data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAXAABAQEAAAAAAAAAAAAAAAAAAAIEAQEAAAAAAAAAAAAAAAAAAAACEAAAAwYHAQAAAAAAAAAAAAAAERMBAhIyYhQhkaEDIwUVNREBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A3dkr5e8tfpwuneJITOzIcmQpit037Bw4mnCVNOpAAQv/2Q=="},{name:"Sweegans_Lite_Bite",title:"Sweegans Lite Bite",icon:"maps:local-pizza",image:"/images/ladies_outerwear.jpg",placeholder:"data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAWQABAQAAAAAAAAAAAAAAAAAAAAEBAQEAAAAAAAAAAAAAAAAAAAIDEAABAwMFAQAAAAAAAAAAAAARAAEygRIDIlITMwUVEQEBAAAAAAAAAAAAAAAAAAAAQf/aAAwDAQACEQMRAD8Avqn5meQ0kwk1UyclmLtNj7L4PQoioFf/2Q=="},{name:"Sweegans_Special_Savouries",title:"Sweegans special Savouries",icon:"places:room-service",image:"/images/mens_tshirts.jpg",placeholder:"data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAWwABAQEAAAAAAAAAAAAAAAAAAAMEAQEAAAAAAAAAAAAAAAAAAAAAEAABAwEJAAAAAAAAAAAAAAARAAESEyFhodEygjMUBREAAwAAAAAAAAAAAAAAAAAAAEFC/9oADAMBAAIRAxEAPwDb7kupZU1MTGnvOCgxpvzEXTyRElCmf//Z"},{name:"Sweegans_Special_Sweet",title:"Sweegans Special Sweet",icon:"favorite",image:"/images/ladies_tshirts.jpg",placeholder:"data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAXwABAQEAAAAAAAAAAAAAAAAAAAMFAQEBAAAAAAAAAAAAAAAAAAABAhAAAQIDCQAAAAAAAAAAAAAAEQABITETYZECEjJCAzMVEQACAwAAAAAAAAAAAAAAAAAAATFBgf/aAAwDAQACEQMRAD8AzeADAZiFc5J7BC9Scek3VrtooilSNaf/2Q=="},{name:"Sweegans_Special_Desserts",title:"Sweegans Special Desserts",icon:"social:cake",image:"/images/ladies_tshirts.jpg",placeholder:"data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAXwABAQEAAAAAAAAAAAAAAAAAAAMFAQEBAAAAAAAAAAAAAAAAAAABAhAAAQIDCQAAAAAAAAAAAAAAEQABITETYZECEjJCAzMVEQACAwAAAAAAAAAAAAAAAAAAATFBgf/aAAwDAQACEQMRAD8AzeADAZiFc5J7BC9Scek3VrtooilSNaf/2Q=="},{name:"Sweegans_Mocktail",title:"Sweegans Mocktail",icon:"maps:local-bar",image:"/images/ladies_tshirts.jpg",placeholder:"data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/7gAOQWRvYmUAZMAAAAAB/9sAhAAQCwsLDAsQDAwQFw8NDxcbFBAQFBsfFxcXFxcfHhcaGhoaFx4eIyUnJSMeLy8zMy8vQEBAQEBAQEBAQEBAQEBAAREPDxETERUSEhUUERQRFBoUFhYUGiYaGhwaGiYwIx4eHh4jMCsuJycnLis1NTAwNTVAQD9AQEBAQEBAQEBAQED/wAARCAADAA4DASIAAhEBAxEB/8QAXwABAQEAAAAAAAAAAAAAAAAAAAMFAQEBAAAAAAAAAAAAAAAAAAABAhAAAQIDCQAAAAAAAAAAAAAAEQABITETYZECEjJCAzMVEQACAwAAAAAAAAAAAAAAAAAAATFBgf/aAAwDAQACEQMRAD8AzeADAZiFc5J7BC9Scek3VrtooilSNaf/2Q=="}];Polymer({is:"shop-category-data",properties:{categoryName:String,itemName:String,categories:{type:Array,value:A,readOnly:!0,notify:!0},category:{type:Object,computed:"_computeCategory(categoryName)",notify:!0},item:{type:Object,computed:"_computeItem(category.items, itemName)",notify:!0},failure:{type:Boolean,notify:!0,readOnly:!0}},_getCategoryObject:function(A){for(var e,a=0;e=this.categories[a];++a)if(e.name===A)return e;this.fire("show-invalid-url-warning")},_computeCategory:function(A){var e=this._getCategoryObject(A);return this._fetchItems(e,1),e},_computeItem:function(A,e){for(var a,Q=0;a=A[Q];++Q)if(a.name===e)return a;this.fire("show-invalid-url-warning")},_fetchItems:function(A,e){this._setFailure(!1),A&&!A.items&&this._getResource({url:"/data/"+A.name+".json",onLoad:function(A){this.set("category.items",JSON.parse(A.target.responseText))},onError:function(A){this._setFailure(!0)}},e)},_getResource:function(A,e){var a=new XMLHttpRequest;a.addEventListener("load",A.onLoad.bind(this)),a.addEventListener("error",function(a){e>1?this.debounce("_getResource",this._getResource.bind(this,A,e-1),200):A.onError.call(this,a)}.bind(this)),a.open("GET",A.url),a.send()},refresh:function(){this.categoryName&&this._fetchItems(this._getCategoryObject(this.categoryName),3)}})}();</script>
 
 </dom-module>
 <dom-module id="shop-image" assetpath="./">
@@ -881,6 +881,7 @@ n&&e.updateNativeStyleProperties(document.documentElement,this.customStyle)}};re
         font-size: 1.3em;
         font-weight: 500;
         margin: 32px 0;
+        text-transform: capitalize;
       }
 
       .item:nth-of-type(3) > h2,
@@ -932,8 +933,9 @@ n&&e.updateNativeStyleProperties(document.documentElement,this.customStyle)}};re
         display: block;
         position: relative;
         padding-top: 130px;
-        padding-bottom: 64px;
+        padding-bottom: 44px;
         min-height: 100vh;
+        min-height: calc(100vh - 128px);
         --app-primary-color: #202020;
         --app-secondary-color: #757575;
         --app-accent-color: #172C50;
@@ -959,17 +961,20 @@ n&&e.updateNativeStyleProperties(document.documentElement,this.customStyle)}};re
         color: var(--app-primary-color);
       }
 
+
+
       .logo {
         text-align: center;
       }
 
       .logo a {
-        font-size: 16px;
-        font-weight: 600;
-        letter-spacing: 0.3em;
-        color: var(--app-primary-color);
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0.7px;
+        line-height: 40px;
+        text-transform: uppercase;
+        color: #202020;
         text-decoration: none;
-        /* required for IE 11, so this <a> can receive pointer events */
         display: inline-block;
         pointer-events: auto;
       }
@@ -1058,7 +1063,12 @@ n&&e.updateNativeStyleProperties(document.documentElement,this.customStyle)}};re
         color: var(--app-secondary-color);
       }
 
-      .drawer-list a.iron-selected {
+      .drawer-list paper-icon-button {
+        color: var(--app-secondary-color);
+      }
+
+      .drawer-list a.iron-selected,
+      .drawer-list a.iron-selected paper-icon-button {
         color: black;
         font-weight: bold;
       }
@@ -1082,17 +1092,14 @@ n&&e.updateNativeStyleProperties(document.documentElement,this.customStyle)}};re
         left: 0;
         right: 0;
         text-align: center;
-        margin-top: 20px;
-        line-height: 24px;
+        line-height: 44px;
+        background: #333;
       }
 
-      footer > a {
-        color: var(--app-secondary-color);
+      footer > span,
+      footer a {
+        color: #EEE;
         text-decoration: none;
-      }
-
-      footer > a:hover {
-        text-decoration: underline;
       }
 
       .demo-label {
@@ -1144,7 +1151,7 @@ n&&e.updateNativeStyleProperties(document.documentElement,this.customStyle)}};re
             <paper-icon-button icon="arrow-back" aria-label="Go back"></paper-icon-button>
           </a>
         </div>
-        <div class="logo" main-title=""><a href="/" aria-label="SHOP Home">SHOP</a></div>
+        <div class="logo" main-title=""><a href="/" aria-label="SHOP Home">Sweegan</a></div>
         <div class="cart-btn-container">
           <a href="/cart" tabindex="-1">
             <paper-icon-button icon="shopping-cart" aria-label$="Shopping cart: [[_computePluralizedQuantity(numItems)]]"></paper-icon-button>
@@ -1173,7 +1180,10 @@ n&&e.updateNativeStyleProperties(document.documentElement,this.customStyle)}};re
       <app-drawer opened="{{drawerOpened}}" swipe-open="" tabindex="0">
         <iron-selector role="navigation" class="drawer-list" selected="[[categoryName]]" attr-for-selected="name">
           <template is="dom-repeat" items="[[categories]]" as="category" initial-count="4">
-            <a name="[[category.name]]" href="/list/[[category.name]]">[[category.title]]</a>
+            <a name="[[category.name]]" href="/list/[[category.name]]">
+              <paper-icon-button icon="[[category.icon]]"></paper-icon-button>
+              <span>[[category.title]]</span>
+            </a>
           </template>
         </iron-selector>
       </app-drawer>
@@ -1195,8 +1205,7 @@ n&&e.updateNativeStyleProperties(document.documentElement,this.customStyle)}};re
     </iron-pages>
 
     <footer>
-      <a href="https://www.polymer-project.org/1.0/toolbox/">Made by Polymer</a>
-      <div class="demo-label">Demo Only</div>
+      <span>Made by <a href="https://github.com/sandeshdamkondwar">Sandesh Damkondwar</a></span>
     </footer>
 
     

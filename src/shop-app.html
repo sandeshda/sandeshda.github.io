@@ -32,8 +32,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         position: relative;
         padding-top: 130px;
-        padding-bottom: 64px;
+        padding-bottom: 44px;
         min-height: 100vh;
+        min-height: calc(100vh - 128px);
         --app-primary-color: #202020;
         --app-secondary-color: #757575;
         --app-accent-color: #172C50;
@@ -59,17 +60,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: var(--app-primary-color);
       }
 
+
+
       .logo {
         text-align: center;
       }
 
       .logo a {
-        font-size: 16px;
-        font-weight: 600;
-        letter-spacing: 0.3em;
-        color: var(--app-primary-color);
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0.7px;
+        line-height: 40px;
+        text-transform: uppercase;
+        color: #202020;
         text-decoration: none;
-        /* required for IE 11, so this <a> can receive pointer events */
         display: inline-block;
         pointer-events: auto;
       }
@@ -158,7 +162,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: var(--app-secondary-color);
       }
 
-      .drawer-list a.iron-selected {
+      .drawer-list paper-icon-button {
+        color: var(--app-secondary-color);
+      }
+
+      .drawer-list a.iron-selected,
+      .drawer-list a.iron-selected paper-icon-button {
         color: black;
         font-weight: bold;
       }
@@ -182,17 +191,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         left: 0;
         right: 0;
         text-align: center;
-        margin-top: 20px;
-        line-height: 24px;
+        line-height: 44px;
+        background: #333;
       }
 
-      footer > a {
-        color: var(--app-secondary-color);
+      footer > span,
+      footer a {
+        color: #EEE;
         text-decoration: none;
-      }
-
-      footer > a:hover {
-        text-decoration: underline;
       }
 
       .demo-label {
@@ -263,7 +269,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-icon-button icon="arrow-back" aria-label="Go back"></paper-icon-button>
           </a>
         </div>
-        <div class="logo" main-title><a href="/" aria-label="SHOP Home">SHOP</a></div>
+        <div class="logo" main-title><a href="/" aria-label="SHOP Home">Sweegan</a></div>
         <div class="cart-btn-container">
           <a href="/cart" tabindex="-1">
             <paper-icon-button icon="shopping-cart" aria-label$="Shopping cart: [[_computePluralizedQuantity(numItems)]]"></paper-icon-button>
@@ -294,7 +300,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-drawer opened="{{drawerOpened}}" swipe-open tabindex="0">
         <iron-selector role="navigation" class="drawer-list" selected="[[categoryName]]" attr-for-selected="name">
           <template is="dom-repeat" items="[[categories]]" as="category" initial-count="4">
-            <a name="[[category.name]]" href="/list/[[category.name]]">[[category.title]]</a>
+            <a name="[[category.name]]" href="/list/[[category.name]]">
+              <paper-icon-button  icon="[[category.icon]]"></paper-icon-button>
+              <span>[[category.title]]</span>
+            </a>
           </template>
         </iron-selector>
       </app-drawer>
@@ -316,8 +325,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </iron-pages>
 
     <footer>
-      <a href="https://www.polymer-project.org/1.0/toolbox/">Made by Polymer</a>
-      <div class="demo-label">Demo Only</div>
+      <span>Made by <a href="https://github.com/sandeshdamkondwar">Sandesh Damkondwar</a></span>
     </footer>
 
     <!-- a11y announcer -->

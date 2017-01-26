@@ -27,6 +27,7 @@
       .title {
         color: var(--app-primary-color);
         font-weight: bold;
+        text-transform: capitalize;
       }
 
       .price {
@@ -47,7 +48,7 @@
 
   </template>
 
-  <script>Polymer({is:"shop-list-item",properties:{item:Object},_formatPrice:function(e){return e?"$"+e.toFixed(2):""}});</script>
+  <script>Polymer({is:"shop-list-item",properties:{item:Object},_formatPrice:function(e){return e?"₹ "+e:""}});</script>
 
 </dom-module>
 </body></html>

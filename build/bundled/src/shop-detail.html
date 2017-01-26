@@ -46,16 +46,19 @@
         font-weight: 500;
         line-height: 28px;
         margin: 0;
+        text-transform: capitalize;
+        margin-bottom: 12px;
       }
 
       .price {
-        margin: 16px 0 40px;
+        margin: 8px 0 0px;
         font-size: 16px;
         color: var(--app-secondary-color);
       }
 
       .description {
         margin: 32px 0;
+        display: none;
       }
 
       .description > h2 {
@@ -69,8 +72,9 @@
       }
 
       .pickers {
+        margin-top: 30px;
         @apply(--layout-vertical);
-        border-top: 1px solid #ccc;
+        /*border-top: 1px solid #ccc;*/
       }
 
       shop-select > select {
@@ -105,9 +109,14 @@
 
         .price {
           font-size: inherit;
-          margin: 12px 0 32px;
+          margin: 8px 10px 0 0;
+          display: inline-block;
         }
 
+        .price.non-veg {
+          border-left: 1px solid #757575;
+          padding-left: 10px;
+        }
       }
 
     </style>
@@ -122,16 +131,20 @@
       <shop-image alt="[[item.title]]" src="[[item.largeImage]]"></shop-image>
       <div class="detail" has-content$="[[_isDefined(item)]]">
         <h1>[[item.title]]</h1>
-        <div class="price">[[_formatPrice(item.price)]]</div>
+        <div class="price">
+          <span hidden$="[[!item.specialPrice]]">Veg. </span>
+          <span>[[_formatPrice(item.price)]]</span>
+        </div>
+        <div class="price non-veg" hidden$="[[!item.specialPrice]]">
+          <span>Non-Veg. </span>
+          <span>[[_formatPrice(item.specialPrice)]]</span>
+        </div>
         <div class="pickers">
-          <shop-select>
-            <label id="sizeLabel" prefix="">Size</label>
+          <shop-select hidden$="[[!item.specialPrice]]">
+            <label id="sizeLabel" prefix="">Type</label>
             <select id="sizeSelect" aria-labelledby="sizeLabel">
-              <option value="XS">XS</option>
-              <option value="S">S</option>
-              <option value="M" selected="">M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
+              <option value="V" selected="">Veg.</option>
+              <option value="NV">Non-Veg.</option>
             </select>
             <shop-md-decorator aria-hidden="true">
               <shop-underline></shop-underline>
@@ -166,7 +179,7 @@
 
   </template>
 
-  <script>Polymer({is:"shop-detail",properties:{item:Object,route:Object,routeData:Object,visible:Boolean,offline:{type:Boolean,observer:"_offlineChanged"},failure:Boolean},observers:["_itemChanged(item, visible)"],_itemChanged:function(e,t){t&&this.debounce("item-change",function(){var t=e?e.description:"";this.$.desc.innerHTML=this._unescapeText(t),this.$.quantitySelect.value="1",this.$.sizeSelect.value="M",this.fire("change-section",{category:e.category,title:e.title})})},_unescapeText:function(e){var t=document.createElement("textarea");return t.innerHTML=e,t.textContent},_formatPrice:function(e){return e?"$"+e.toFixed(2):""},_addToCart:function(){this.fire("add-cart-item",{item:this.item,quantity:parseInt(this.$.quantitySelect.value,10),size:this.$.sizeSelect.value})},_isDefined:function(e){return null!=e},_tryReconnect:function(){this.$.categoryData.refresh()},_offlineChanged:function(e){e||this._tryReconnect()}});</script>
+  <script>Polymer({is:"shop-detail",properties:{item:Object,route:Object,routeData:Object,visible:Boolean,offline:{type:Boolean,observer:"_offlineChanged"},failure:Boolean},observers:["_itemChanged(item, visible)"],_itemChanged:function(e,t){t&&this.debounce("item-change",function(){var t=e?e.description:"";this.$.desc.innerHTML=this._unescapeText(t),this.$.quantitySelect.value="1",this.$.sizeSelect.value="V",this.fire("change-section",{category:e.category,title:e.title})})},_unescapeText:function(e){var t=document.createElement("textarea");return t.innerHTML=e,t.textContent},_formatPrice:function(e){return e?"₹ "+e.toFixed(2):""},_addToCart:function(){this.fire("add-cart-item",{item:this.item,quantity:parseInt(this.$.quantitySelect.value,10),size:this.$.sizeSelect.value})},_isDefined:function(e){return null!=e},_tryReconnect:function(){this.$.categoryData.refresh()},_offlineChanged:function(e){e||this._tryReconnect()}});</script>
 
 </dom-module>
 </body></html>

@@ -207,8 +207,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   <shop-select>
                     <select id="shipCountry" name="shipCountry" required
                         aria-labelledby="shipCountryLabel shipAddressHeading">
-                      <option value="US" selected>United States</option>
-                      <option value="CA">Canada</option>
+                      <option value="US" selected>India</option>
                     </select>
                     <shop-md-decorator aria-hidden="true">
                       <shop-underline></shop-underline>
@@ -647,7 +646,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _formatPrice: function(total) {
-        return isNaN(total) ? '' : '$' + total.toFixed(2);
+        return isNaN(total) ? '' : '₹' + total;
       },
 
       _getEntryTotal: function(entry) {
