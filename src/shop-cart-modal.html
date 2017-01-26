@@ -52,7 +52,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .label {
         @apply(--layout-flex);
         line-height: 24px;
-        margin: 8px;
+        font-size: 16px;
+        padding-left: 10px;
       }
 
       .modal-button {
@@ -68,8 +69,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       #closeBtn {
         position: absolute;
-        right: 5px;
-        top: 5px;
+        right: 20px;
+        top: 10px;
+        background: #EEE;
+        padding: 4px;
+        width: 28px;
+        height: 28px;
+        border-radius: 5px;
       }
 
       @media (max-width: 767px) {
@@ -86,16 +92,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       }
 
+      @media (min-width: 767px) {
+
+      }
+
     </style>
 
     <div class="layout-horizontal">
       <div class="label">Added to cart</div>
     </div>
     <div class="layout-horizontal">
-      <shop-button class="modal-button">
+      <shop-button class="modal-button border-radius">
         <a href="/cart" on-tap="close" id="viewCartAnchor">View Cart</a>
       </shop-button>
-      <shop-button class="modal-button">
+      <shop-button class="modal-button border-radius">
         <a href="/checkout" on-tap="close">Checkout</a>
       </shop-button>
     </div>

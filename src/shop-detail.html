@@ -101,12 +101,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 16px 24px 16px 70px;
       }
 
+      shop-button {
+        margin-top: 20px;
+      }
+
       @media (max-width: 767px) {
 
         #content {
           @apply(--layout-vertical);
           @apply(--layout-center);
         }
+
+
 
         shop-image {
           margin: 0;
@@ -199,7 +205,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <h2>Description</h2>
           <p id="desc"></p>
         </div>
-        <shop-button responsive>
+        <shop-button class="border-radius"  responsive>
           <button on-tap="_addToCart" aria-label="Add this item to cart">Add to Cart</button>
         </shop-button>
       </div>

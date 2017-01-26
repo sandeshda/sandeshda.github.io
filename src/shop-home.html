@@ -97,7 +97,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           padding: 8px 24px;
         }
       }
-
     </style>
 
     <template is="dom-repeat" items="[[categories]]" strip-whitespace>
@@ -106,7 +105,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <shop-image src="[[item.image]]" alt="[[item.title]]" placeholder-img="[[item.placeholder]]"></shop-image>
         </a>
         <h2>[[item.title]]</h2>
-        <shop-button>
+        <shop-button class="border-radius">
           <a aria-label$="[[item.title]] Shop Now" href$="/list/[[item.name]]">Shop Now</a>
         </shop-button>
       </div>
